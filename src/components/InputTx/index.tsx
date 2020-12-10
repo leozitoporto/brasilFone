@@ -8,10 +8,10 @@ interface InputProps extends TextInputProps {
   containerStyle?: {};
 }
 
-const Input: React.FC<InputProps> = ({ name, ...rest }) => (
+const InputTx: React.FC<InputProps> = ({ name, ...rest }) => (
   <Container>
-    <TextInput placeholderTextColor="#666360" {...rest} />
+    <TextInput placeholderTextColor="#000" {...rest} />
   </Container>
 );
 
-export default Input;
+export default InputTx;

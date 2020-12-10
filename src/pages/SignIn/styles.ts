@@ -9,11 +9,19 @@ export const Container = styled.View`
   padding: 0 30px ${Platform.OS === 'android' ? 150 : 40}px;
 `;
 
+
 export const Title = styled.Text`
-  font-size: 24px;
-  color: #f4ede8;
-  font-family: 'RobotoSlab-Medium';
-  margin: 64px 0 24px;
+  font-size: 18px;
+  color: #fff;
+  margin: 18px 0 3px;
+  text-align: left;
+`;
+
+export const Title2 = styled.Text`
+  font-size: 18px;
+  color: #000;
+  margin: 0px 0 15px 3px;
+  text-align: center;
 `;
 
 export const ForgotPassword = styled.TouchableOpacity`
@@ -21,9 +29,8 @@ export const ForgotPassword = styled.TouchableOpacity`
 `;
 
 export const ForgotPasswordText = styled.Text`
-  color: #f4ede8;
-  font-size: 16px;
-  font-family: 'RobotoSlab-Medium';
+  color: #006600;
+  font-size: 18px;
 `;
 
 export const CreateAccountButton = styled.TouchableOpacity`
@@ -31,9 +38,9 @@ export const CreateAccountButton = styled.TouchableOpacity`
   left: 0;
   bottom: 0;
   right: 0;
-  background: #312e38;
+  background: #fff;
   border-top-width: 1px;
-  border-color: #232129;
+  border-color: #fff;
   padding: 16px 0 ${16 + getBottomSpace()}px; /*para quando for ios dar um espaco do botao */
 
   justify-content: center;
@@ -42,8 +49,7 @@ export const CreateAccountButton = styled.TouchableOpacity`
 `;
 
 export const CreateAccountButtonText = styled.Text`
-  color: #ff9000;
+  color: #006600;
   font-size: 18px;
-  font-family: 'RobotoSlab-Medium';
   margin-left: 16px;
 `;
