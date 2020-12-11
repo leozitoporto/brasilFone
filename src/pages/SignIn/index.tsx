@@ -68,7 +68,6 @@ const SignIn: React.FC = () => {
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
-          console.log(errors);
           formRef.current?.setErrors(errors);
         }
 

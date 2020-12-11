@@ -71,12 +71,12 @@ const SignUp: React.FC = () => {
           'Cadastro realizado com sucesso',
           'Você já pode fazer login na aplicação.',
         );
+
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
+          console.log(errors);
           formRef.current?.setErrors(errors);
-
-          return;
         }
 
         Alert.alert(
