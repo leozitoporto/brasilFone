@@ -16,5 +16,5 @@ export const Container = styled.View`
 `;
 
 export const TextInput = styled.TextInput`
-  font-size: 20px;
+  font-size: 18px;
 `;

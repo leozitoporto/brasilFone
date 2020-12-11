@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -17,6 +17,9 @@ import Input from '../../components/Input';
 import InputTx from '../../components/InputTx';
 import Button from '../../components/Button';
 
+import * as Yup from 'yup';
+import getValidationErrors from '../../utils/getValidationErrors';
+
 import logoImg from '../../assets/logo.png';
 
 import {
@@ -28,7 +31,8 @@ import {
 } from './styles';
 
 
-interface SignInFormData {
+interface SignUpFormData {
+  name: string;
   email: string;
   password: string;
 }
@@ -39,6 +43,50 @@ const SignUp: React.FC = () => {
 
   const emailInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
+
+  //const { signIn } = useAuth();
+
+  const handleSignUp = useCallback(
+    async (data: SignUpFormData) => {
+      try {
+        formRef.current?.setErrors({});
+
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Nome obrigatório'),
+          email: Yup.string()
+            .required('E-mail obrigatório')
+            .email('Digite um e-mail válido'),
+          password: Yup.string().min(6, 'Mínimo de 6 digitos'),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        //await api.post('/users', data);
+
+        navigation.goBack();
+
+        Alert.alert(
+          'Cadastro realizado com sucesso',
+          'Você já pode fazer login na aplicação.',
+        );
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+
+          return;
+        }
+
+        Alert.alert(
+          'Erro no cadastro',
+          'Ocorreu um erro ao fazer cadastro, tente novamente.',
+        );
+      }
+    },
+    [],
+  );
 
   return (
     <>
@@ -56,9 +104,7 @@ const SignUp: React.FC = () => {
             <Title>.</Title>
             <Title2>Crie sua conta</Title2>
             <Form ref={formRef}
-              onSubmit={(data) => {
-                console.log(data);
-              }}>
+              onSubmit={handleSignUp}>
               <InputTx name="textname" placeholder="Nome" />
               <Input
                 autoCapitalize="words"
