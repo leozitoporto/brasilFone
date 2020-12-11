@@ -17,12 +17,6 @@ export const Title = styled.Text`
   text-align: left;
 `;
 
-export const Title2 = styled.Text`
-  font-size: 18px;
-  color: #000;
-  margin: 0px 0 15px 3px;
-  text-align: center;
-`;
 
 export const ForgotPassword = styled.TouchableOpacity`
   margin-top: 24px;
