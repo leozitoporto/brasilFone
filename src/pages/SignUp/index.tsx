@@ -14,7 +14,6 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 
 import Input from '../../components/Input';
-import InputTx from '../../components/InputTx';
 import Button from '../../components/Button';
 
 import * as Yup from 'yup';
@@ -64,13 +63,11 @@ const SignUp: React.FC = () => {
         });
 
         //await api.post('/users', data);
-
-        navigation.goBack();
-
         Alert.alert(
-          'Cadastro realizado com sucesso',
-          'Você já pode fazer login na aplicação.',
+          'Sucesso!',
+          'Cadastro realizado.',
         );
+        navigation.goBack();
 
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -101,11 +98,11 @@ const SignUp: React.FC = () => {
         >
           <Container>
             <Image source={logoImg} />
-            <Title>.</Title>
-            <Title2>Crie sua conta</Title2>
+            <Title2>.</Title2>
+            <Title>Crie sua conta</Title>
             <Form ref={formRef}
               onSubmit={handleSignUp}>
-              <InputTx name="textname" placeholder="Nome" />
+              <Title>Nome</Title>
               <Input
                 autoCapitalize="words"
                 name="name"
@@ -114,7 +111,7 @@ const SignUp: React.FC = () => {
                   emailInputRef.current?.focus();
                 }}
               />
-              <InputTx name="textemail" placeholder="E-mail" />
+              <Title>E-mail</Title>
               <Input
                 ref={emailInputRef}
                 keyboardType="email-address"
@@ -126,7 +123,7 @@ const SignUp: React.FC = () => {
                   passwordInputRef.current?.focus();
                 }}
               />
-              <InputTx name="textpassword" placeholder="Senha" />
+              <Title>Senha</Title>
               <Input
                 ref={passwordInputRef}
                 secureTextEntry
@@ -140,8 +137,6 @@ const SignUp: React.FC = () => {
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
-
-
 
       <BackToSignIn onPress={() => { navigation.goBack() }}>
         <BackToSignInText>

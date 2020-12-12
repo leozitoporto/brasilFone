@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+
 
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
@@ -30,8 +31,8 @@ import {
   Title2,
   ForgotPassword,
   ForgotPasswordText,
-  CreateAccountButton,
-  CreateAccountButtonText,
+  BackToSignIn,
+  BackToSignInText,
 } from './styles';
 
 
@@ -45,7 +46,6 @@ const SignIn: React.FC = () => {
   const passwordInputRef = useRef<TextInput>(null);
 
   const navigation = useNavigation();
-
   // const { signIn, user } = useAuth();
 
   //console.log(user);
@@ -66,12 +66,12 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        navigation.navigate('Profile');
         // await signIn({
         //   email: data.email,
         //   password: data.password,
         // });
 
+        //    history.push('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -100,7 +100,7 @@ const SignIn: React.FC = () => {
         >
           <Container>
             <Image source={logoImg} />
-            <Title2>.</Title2>
+            <Title>Você está logado</Title>
             <Form ref={formRef} onSubmit={handleSignIn}>
               <Title>E-mail</Title>
               <Input
@@ -128,22 +128,26 @@ const SignIn: React.FC = () => {
                 <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
               </ForgotPassword>
 
-              <Button
+              {/* <Button
                 onPress={() => {
                   formRef.current?.submitForm();
                 }}>
                 LOGAR
-              </Button>
+              </Button> */}
+              <Button onPress={() => { navigation.navigate('SignIn') }}>
+                SALVAR
+            </Button>
             </Form>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <CreateAccountButton onPress={() => { navigation.navigate('SignUp') }}>
-        <CreateAccountButtonText>
-          Criar uma conta!
-        </CreateAccountButtonText>
-      </CreateAccountButton>
+      <BackToSignIn onPress={() => { navigation.goBack() }}>
+        <BackToSignInText>
+          Voltar
+        </BackToSignInText>
+      </BackToSignIn>
+
     </>
   );
 };

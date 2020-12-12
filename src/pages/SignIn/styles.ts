@@ -9,14 +9,18 @@ export const Container = styled.View`
   padding: 0 30px ${Platform.OS === 'android' ? 150 : 40}px;
 `;
 
-
 export const Title = styled.Text`
   font-size: 18px;
-  color: #fff;
-  margin: 18px 0 3px;
-  text-align: left;
+  color: #000;
+  margin: 24px 0 5px;
 `;
 
+export const Title2 = styled.Text`
+  font-size: 18px;
+  color: #fff;
+  margin: 0px 0 15px 3px;
+  text-align: center;
+`;
 
 export const ForgotPassword = styled.TouchableOpacity`
   margin-top: 24px;
